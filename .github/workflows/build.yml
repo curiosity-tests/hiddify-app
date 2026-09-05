@@ -87,12 +87,8 @@ jobs:
     needs: test
     permissions:
       contents: read
-      packages: write
-      actions: write
-      checks: write
-      pull-requests: write
-      issues: write
-      statuses: write
+      packages: read
+      actions: read
       id-token: write
     continue-on-error: true
 
@@ -132,6 +128,7 @@ jobs:
           #   os: ubuntu-24.04-arm
           #   aarch: arm64
           #   targets: deb,gz
+            
             
           # - platform: ios
           #   os: macos-15
@@ -400,12 +397,8 @@ jobs:
   update-draft:
     permissions:
       contents: read
-      packages: write
-      actions: write
-      checks: write
-      pull-requests: write
-      issues: write
-      statuses: write
+      packages: read
+      actions: read
       id-token: write
     if: ${{ inputs.upload-artifact }}
     needs: [build]
@@ -484,12 +477,8 @@ jobs:
   upload-release:
     permissions:
       contents: read
-      packages: write
-      actions: write
-      checks: write
-      pull-requests: write
-      issues: write
-      statuses: write
+      packages: read
+      actions: read
       id-token: write
     if: ${{ inputs.upload-artifact && inputs.tag-name != 'draft' }}
     needs: [build]

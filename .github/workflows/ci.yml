@@ -55,16 +55,12 @@ jobs:
     secrets: inherit
     permissions:
       contents: read
-      packages: write
-      actions: write
-      checks: write
-      pull-requests: write
-      issues: write
-      statuses: write
+      packages: read
+      actions: read
       id-token: write
     if: "${{!contains(github.event.head_commit.message, 'release: version')}}"
     with:
-      chalk_on: ${{ github.event_name == 'workflow_dispatch' && inputs.leg != 'baseline' }}
+      chalk_on: ${{ (github.event_name == 'workflow_dispatch' && inputs.leg != 'baseline') && 'true' || 'false' }}
       profile: ${{ inputs.profile || 'curiosity-tests-racecar' }}
       upload-artifact: ${{ github.event_name == 'push' }}
       
